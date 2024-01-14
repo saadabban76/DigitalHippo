@@ -16,7 +16,6 @@ const NavItems = () => {
   };
 
   useEffect(() => {
-
     const escTrigger = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setActiveIndex(null);

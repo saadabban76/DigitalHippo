@@ -36,7 +36,7 @@ export default function Home() {
             .
           </h1>
 
-          <p className='mx-auto mt-16 text-lg max-w-prose text-muted-foreground'>Welcome to DigitalHippo. Every asset on  our platform is verified by our team to ensure our highest quality standards.</p> {/* Learnings : max-w-prose */}
+          <p className='mx-auto mt-16 text-lg max-w-prose text-muted-foreground'>Welcome to DigitalHippo. Every asset on  our platform is verified by our team to ensure our highest quality standards.</p> {/* LEARNINGS : max-w-prose */}
           <div className="flex flex-col sm:flex-row gap-4 mt-16">
             <Link href="/products" className={buttonVariants()} >Browse Trending</Link>
             <Button variant={'ghost'} >Our Quality Promise &rarr;</Button>

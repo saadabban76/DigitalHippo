@@ -21,7 +21,7 @@ const NavItem = ({ category, isAnyOpen, handleOpen, isOpen }: NavItemProps) => {
     // console.log('navitem : ', isOpen);
     return (
         <div className='flex flex-col'>
-            <div className='relative flex items-center'>
+            <div className='relative  flex items-center'>
                 <Button variant={isOpen ? "secondary" : "ghost"} className='gap-1.5 border-none outline-none' onClick={handleOpen} >
                     {category.label}
                     <ChevronDown className={cn('h-4 w-4 transition-all text-muted-foreground', {
@@ -30,8 +30,8 @@ const NavItem = ({ category, isAnyOpen, handleOpen, isOpen }: NavItemProps) => {
                 </Button>
             </div>
             {isOpen && (
-                <div className={cn('absolute inset-x-0 top-full text-sm text-muted-foreground', {
-                    'animate-in fade-in-10 slide-in-from-top-5': !isAnyOpen,
+                <div className={cn('absolute inset-x-0 top-[100%] text-sm text-muted-foreground', {
+                    'animate-in fade-in-10 slide-in-from-tom-5': !isOpen,
                 })}>
                     {/* custom shadow div */}
                     <div className='absolute inset-0 top-1/2 bg-white shadow' aria-hidden='true' />

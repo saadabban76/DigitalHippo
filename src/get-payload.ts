@@ -11,11 +11,12 @@ declare global { // LEARNINGS : The declare keyword in TypeScript is used to mak
     var payload: any;
 } // LEARNINGS : you can either follow 'declare' approach or use global as any method to get away from typescript type safety.
 
+
 let cached = (global as any).payload;
 {/* LEARNINGS :  payload is defined as a property of the global object, which means it's in the global scope. It can be accessed and modified from any part of the code.  */ }
 // global scope : Variables defined in the global scope are accessible from any part of the code. In a web browser, the global scope is the window object. In Node.js, the global scope is the global object.
 
-// in simple words global is like the cookies in the web browser
+// in simple words global in nodejs is like the cookies in the web browser
 
 if (!cached) {
     cached = {

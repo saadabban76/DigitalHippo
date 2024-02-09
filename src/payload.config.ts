@@ -12,6 +12,8 @@ export default buildConfig({
     },
     admin: {
         bundler: webpackBundler(),
+        // LEARNINGS : the webpackBundler function is used to configure the bundler for the admin panel. This bundler is responsible for bundling the JavaScript and CSS files for the admin panel.
+        
         meta: {
             titleSuffix: "- DigitalHippo",
             favicon: '/favicon.ico',

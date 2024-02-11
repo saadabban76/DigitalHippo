@@ -30,8 +30,8 @@ const Navbar = () => {
               <div className='ml-auto flex items-center'>
                 {user ? null : (
                   <div className=' lg-flex lg-flex-1 lg:items-center lg:justify-end lg:space-x-6  '>
-                    <Link href='/sign-in' className={buttonVariants({ variant: 'ghost' })} >Sign In</Link>
-                    <Link href='/sign-up' className={buttonVariants({ variant: 'ghost', className: 'border-gray-300 border-l rounded-none' })}>Create Account</Link>
+                    <Link href='/signin' className={buttonVariants({ variant: 'ghost' })} >Sign In</Link>
+                    <Link href='/signup' className={buttonVariants({ variant: 'ghost', className: 'border-gray-300 border-l rounded-none' })}>Create Account</Link>
                     <div className='ml-4 flow-root lg:ml-6'>
                       {/* <Cart /> */}
                     </div>

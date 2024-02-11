@@ -1,42 +1,33 @@
 "use client";
 
-import { Icons } from '@/components/Icons'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Icons } from '@/components/Icons';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { ArrowRight } from 'lucide-react'
-import Link from 'next/link'
-import React, { useEffect, useRef } from 'react'
-import { useForm } from 'react-hook-form';
+import { SignupSchema, TSignupSchema } from '../../../lib/validators/account-credentials';
+import { trpc } from '@/trpc/client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { SignupSchema, TSignupSchema } from '@/lib/validators/account-credentials';
-
-
-interface Prop {
-    onSubmit: () => void;
-}
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 const Page = () => {
 
     // custom ref to focus the email input when the page loads
-    const emailRef = useRef<HTMLInputElement>(null);
-    useEffect(() => {
-        if (emailRef.current) {            
-            emailRef.current.focus();
-        }
-    }, []);
 
-  
     const { register, handleSubmit, formState: { errors } } = useForm<TSignupSchema>(
         {
             resolver: zodResolver(SignupSchema),
         }
     );
 
+    const { mutate } = trpc.auth.createPayloadUser.useMutation({});
+
     const onSubmit = ({ email, password }: TSignupSchema) => {
         // send the data to server babyyy
+        mutate({ email, password });
     };
 
     return (
@@ -53,24 +44,22 @@ const Page = () => {
                             variant: 'link',
                             className: 'gap-1.5',
                         })}
-                        href='/sign-in'>
+                        href='/signin'>
                         Already have an account? Sign-in
                         <ArrowRight className='h-4 w-4' />
                     </Link>
                 </div>
 
                 <div className='grid gap-6'>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className='grid gap-2'>
                             <div className='grid gap-1 py-2'>
                                 <Label htmlFor='email'>Email</Label>
                                 <Input
                                     {...register('email')}
-                                    required={true}
-                                    ref={emailRef}
                                     className={cn({
                                         'focus-visible:ring-red-500':
-                                            true,
+                                            errors.email,
                                     })}
                                     placeholder='you@example.com'
                                 />
@@ -87,8 +76,8 @@ const Page = () => {
                                     {...register('password')}
                                     type='password'
                                     className={cn({
-                                        'focus-visible:text-red-500':
-                                            true,
+                                        'focus-visible:ring-red-500':
+                                            errors.password,
                                     })}
                                     placeholder='Password'
                                 />
